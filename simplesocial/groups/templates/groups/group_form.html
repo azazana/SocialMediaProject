@@ -1,10 +1,10 @@
 {%extends "groups/group_base.html"%}
-{%load boostrap5%}
+{%load bootstrap5%}
 {%block group_content%}
 <h4>Create a new group!</h4>
 <form action="{%url 'groups:create'%}" method="post" id="groupForm">
     {%csrf_token%}
-    {{%boostrap_form form%}}
+    {%bootstrap_form form%}
     <input type="submit" class="btn btn-primery btn-large" value="Create group">
 </form>
 
