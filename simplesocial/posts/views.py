@@ -14,7 +14,11 @@ User = get_user_model()
 class PostList(SelectRelatedMixin, generic.ListView):
     model = models.Post
     select_related = ('user', 'group')
-
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(PostList, self).get_context_data(**kwargs)
+        context['get_user_groups']=models.Group.objects.filter(members__in=[self.request.user.pk])
+        context['get_other_groups']=models.Group.objects.exclude(members__in=[self.request.user.pk])
+        return context
 
 class UserPosts(generic.ListView):
     model = models.Post

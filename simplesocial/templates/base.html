@@ -17,14 +17,15 @@
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           {%if user.is_authenticated %}
-              <li><a class="nav-item nav-link active" href="{%url 'posts:create'%}">Post</a></li>
+              <li><a class="nav-item nav-link active" href="{%url 'posts:create'%}">Create Post</a></li>
+              <li><a class="nav-item nav-link active" href="{%url 'posts:all'%}">Posts</a></li>
               <li><a class="nav-item nav-link active" href="{%url 'groups:all'%}">Groups</a></li>
               <li><a class="nav-item nav-link active" href="{%url 'groups:create'%}">Create Group</a></li>
-              <li><a class="nav-item nav-link active" href="{% url 'accounts:logout'%}">Log out</a></li>
+              <li><a class="nav-item nav-link active" href="{% url 'accounts:logout'%}"></i> Log out</a></li>
           {%else%}
               <li><a class="nav-item nav-link active" href="{%url 'groups:all'%}">Groups</a></li>
-              <li><a class="nav-item nav-link active fa fa-user-circle-o" href="{%url 'accounts:login'%}"></a></li>
-              <li><a class="nav-item nav-link active fa fa-address-card-o" href="{%url 'accounts:signup'%}">Sing up</a></li>
+              <li><a class="nav-item nav-link active" href="{%url 'accounts:login'%}"><i class="fa fa-user-circle-o"></i>Log in</a></li>
+              <li><a class="nav-item nav-link active" href="{%url 'accounts:signup'%}"><i class="fa fa-address-card-o"></i> Sing up</a></li>
           {%endif%}
       </ul>
     </div>

@@ -5,18 +5,17 @@
 <div class="content">
     {% if user in group.members.all %}
     <a href="{%url 'groups:leave' slug=group.slug%}" class="btn btn-warning">
-        <span class="fa-regular fa-arrow-right-from-bracket">Leave</span>
+        <i class="fa-sharp fa fa-arrow-up-from-bracket fa-rotate-90"></i> Leave
     </a>
     {%else%}
     <a href="{%url 'groups:join' slug=group.slug%}" class="btn btn-warning">
-        <i class="fa-sharp fa-light fa-right-to-bracket"></i>
+        <i class="fa-sharp fa fa-right-to-bracket"></i> Enter
     </a>
     {%endif%}
 </div>
 {%endblock%}
 {%block group_content%}
 <div class="col-md-8">
-    {{group.posts.count}}
     {% if group.posts.count == 0 %}
         <h2>No posts in the group yet</h2>
     {% else %}

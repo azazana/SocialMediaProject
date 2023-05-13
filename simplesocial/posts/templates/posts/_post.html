@@ -1,7 +1,6 @@
 <div class="post media">
     <h3>{{post.message_html|safe}}</h3>
     <div class="media-body">
-        {#<strong>{{post.user.username}}</strong>#}
         <h5 class="media-heading">
         <span class="username">
             <a href="{%url 'posts:for_user' username=post.user.username%}">@{{post.user.username}}</a>
@@ -11,11 +10,13 @@
                 {{post.created_at}}
             </a>
         </time>
+            in
+            <a href="{%url 'groups:single' slug=post.group.slug%}">{{post.group}}</a>
         </h5>
         <div class="media-footer">
-            {%if user.is_authenticated and post.user == user%}
+            {%if user.is_authenticated and post.user == user and not hide_delete%}
             <a href="{%url 'posts:delete' pk=post.pk %}" title="delete" class="btn-btn=simple">
-                <span class="fa-regular fa-trash text-danger" aria-hidden="true"></span>
+                <i class="fa fa-trash text-danger"></i>
                 <span class="text-danger icon-label">Delete</span>
             </a>
             {%endif%}
