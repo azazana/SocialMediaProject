@@ -12,6 +12,9 @@
         <i class="fa-sharp fa fa-right-to-bracket"></i> Enter
     </a>
     {%endif%}
+    <a href="{%url 'groups:update' slug=group.slug%}" class="btn btn-warning">
+        <i class="fa-solid fa-pencil"></i>
+    </a>
 </div>
 {%endblock%}
 {%block group_content%}

@@ -48,3 +48,8 @@ class LeaveGroup(LoginRequiredMixin, generic.RedirectView):
             membership.delete()
             messages.success(self.request, 'You are left the group!')
         return super().get(request, *args, **kwargs)
+
+class UpdateGroup(LoginRequiredMixin, generic.UpdateView):
+    model = Group
+    fields = ('name', 'description')
+    redirect_field_name = "groups/group_update.html"

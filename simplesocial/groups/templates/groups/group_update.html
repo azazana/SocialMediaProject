@@ -1,0 +1,10 @@
+{%extends "groups/group_base.html"%}
+{%load bootstrap5%}
+{%block group_content%}
+<h4>Update group!</h4>
+<form method="post" id="groupForm">
+    {%csrf_token%}
+    {%bootstrap_form form%}
+    <input type="submit" class="btn btn-primary btn-large" value="Update group">
+</form>
+{%endblock%}

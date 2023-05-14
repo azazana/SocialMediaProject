@@ -4,6 +4,7 @@ from django.http import Http404
 from django.views import generic
 from braces.views import SelectRelatedMixin
 from django.contrib import messages
+from . import forms
 
 from . import models
 from django.contrib.auth import get_user_model
@@ -74,6 +75,8 @@ class DeletePost(LoginRequiredMixin, SelectRelatedMixin, generic.DeleteView):
         messages.success(self.request, 'Post Deleted')
         return super().delete(*args, **kwargs)
 
-class UpdatePost(LoginRequiredMixin, generic.UpdateView):
-    model = models.Post
-    success_url = reverse_lazy('posts:all')
+# class UpdatePost(LoginRequiredMixin, generic.UpdateView):
+#     model = models.Post
+#     redirect_field_name =
+#     form_class = forms.
+
