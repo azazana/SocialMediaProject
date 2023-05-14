@@ -8,4 +8,5 @@ urlpatterns=[
     path('by/<str:username>/', views.UserPosts.as_view(), name='for_user'),
     path('by/<str:username>/<int:pk>/', views.PostDetail.as_view(), name='single'),
     path('delete/<int:pk>/', views.DeletePost.as_view(), name='delete'),
+    path('update/<int:pk>',views.UpdatePost.as_view(template_name='posts\post_update.html'),name='update')
 ]

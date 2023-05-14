@@ -75,8 +75,7 @@ class DeletePost(LoginRequiredMixin, SelectRelatedMixin, generic.DeleteView):
         messages.success(self.request, 'Post Deleted')
         return super().delete(*args, **kwargs)
 
-# class UpdatePost(LoginRequiredMixin, generic.UpdateView):
-#     model = models.Post
-#     redirect_field_name =
-#     form_class = forms.
+class UpdatePost(LoginRequiredMixin, generic.UpdateView):
+    model = models.Post
+    fields = ('message', 'group')
 

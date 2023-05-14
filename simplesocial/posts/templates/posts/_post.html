@@ -15,7 +15,10 @@
         </h5>
         <div class="media-footer">
             {%if user.is_authenticated and post.user == user and not hide_delete%}
-            <a href="{%url 'posts:delete' pk=post.pk %}" title="delete" class="btn-btn=simple">
+               <a href="{%url 'posts:update' pk=post.pk%}" class="btn-btn-simple">
+                <i class="fa fa-pencil text-danger"></i>
+                        <span class="text-danger icon-label">Update</span></a>
+            <a href="{%url 'posts:delete' pk=post.pk %}" title="delete" class="btn-btn-simple">
                 <i class="fa fa-trash text-danger"></i>
                 <span class="text-danger icon-label">Delete</span>
             </a>
