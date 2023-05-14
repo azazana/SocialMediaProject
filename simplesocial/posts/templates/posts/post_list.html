@@ -4,11 +4,13 @@
 <div class="col-md-4">
     {%if request.user.is_authenticated%}
     <div class="card card-with-shadow">
-        <div class="content">
+        <div class="container">
             <h5 class="title">Your groups</h5>
             <ul class="list-unstyled">
-                {%for member_group in get_user_groups%}
-                    <li class="group li-with-bullet"><a href="{%url 'groups:single' slug=member_group.slug%}">{{member_group.group}}</a></li>
+                {%for user in get_user_groups%}
+                <li class="group li-with-bullet">
+                    <a href="{%url 'groups:single' slug=user.group.slug%}">{{user.group}}</a>
+                </li>
                 {%endfor%}
             </ul>
         </div>
@@ -18,9 +20,9 @@
         <div class="container">
             <h5 class="title">All groups</h5>
             <ul class="list-unstyled">
-                {% for other_group in get_other_groups %}
-                 <li class="group li-with-bullet">
-                    <a href="{%url 'groups:single' slug=other_group.slug %}">{{other_group}}</a>
+                {% for group in get_other_groups %}
+                <li class="group li-with-bullet">
+                    <a href="{%url 'groups:single' slug=group.slug%}">{{group}}</a>
                 </li>
                 {%endfor%}
             </ul>

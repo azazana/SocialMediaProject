@@ -1,7 +1,7 @@
 from django.db import models
 from django.urls import  reverse
 import misaka
-from groups.models import Group
+from groups.models import Group, GroupMember
 from django.contrib.auth import get_user_model
 User = get_user_model()
 

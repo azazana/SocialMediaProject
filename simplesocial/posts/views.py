@@ -14,10 +14,11 @@ User = get_user_model()
 class PostList(SelectRelatedMixin, generic.ListView):
     model = models.Post
     select_related = ('user', 'group')
+
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(PostList, self).get_context_data(**kwargs)
-        context['get_user_groups']=models.Group.objects.filter(members__in=[self.request.user.pk])
-        context['get_other_groups']=models.Group.objects.exclude(members__in=[self.request.user.pk])
+        context['get_other_groups'] = models.Group.objects.exclude(members__in=[self.request.user])
+        context['get_user_groups']=models.GroupMember.objects.filter(user__in=[self.request.user])
         return context
 
 class UserPosts(generic.ListView):
@@ -72,3 +73,7 @@ class DeletePost(LoginRequiredMixin, SelectRelatedMixin, generic.DeleteView):
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, 'Post Deleted')
         return super().delete(*args, **kwargs)
+
+class UpdatePost(LoginRequiredMixin, generic.UpdateView):
+    model = models.Post
+    success_url = reverse_lazy('posts:all')
