@@ -1,5 +1,5 @@
 {%extends "posts/post_base.html"%}
-
+{%load poll_extras%}
 {%block prepost%}
 <div class="col-md-4">
     {%if request.user.is_authenticated%}
@@ -7,11 +7,12 @@
         <div class="container">
             <h5 class="title">Your groups</h5>
             <ul class="list-unstyled">
-                {%for user in get_user_groups%}
+            {%get_your_group as your_group%}
+            {% for member in your_group %}
                 <li class="group li-with-bullet">
-                    <a href="{%url 'groups:single' slug=user.group.slug%}">{{user.group}}</a>
+                    <a href="{%url 'groups:single' slug=member.group.slug%}">{{member.group}}</a>
                 </li>
-                {%endfor%}
+            {%endfor%}
             </ul>
         </div>
     </div>
@@ -20,7 +21,8 @@
         <div class="container">
             <h5 class="title">All groups</h5>
             <ul class="list-unstyled">
-                {% for group in get_other_groups %}
+               {%get_all_group as all_group%}
+               {% for group in all_group %}
                 <li class="group li-with-bullet">
                     <a href="{%url 'groups:single' slug=group.slug%}">{{group}}</a>
                 </li>
